@@ -1,5 +1,0 @@
-// Loading 请求
-export const LOADING_REQUEST = 'LOADING_REQUEST';
-export const LOADING_SUCCESS = 'LOADING_SUCCESS';
-export const LOADING_FAILURE = 'LOADING_FAILURE';
-
