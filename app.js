@@ -4,14 +4,17 @@ var Lob = require('lob')('test_409b8a53b0c8af0e49ca3d44bb31d99d990');
 
 var repURL = 'https://www.googleapis.com/civicinfo/v2/representatives';
 
+var http = require('http');
+
+app.use(express.static('public'));
+
 app.get('/', function (req, res) {
-    res.send('Hello World!');
+    res.send('index.html');
 });
 
 app.post('/', function (req, res) {
     console.log(req);
-    getReps(req.address);
-    res.send('Got a POST request');
+    res.send(getReps(req.address));
 });
 
 app.listen(3000, function() {
@@ -30,6 +33,6 @@ function getReps(address) {
                         .join("&")
                         .replace(/%20/g,"+");
     fetch(repURL + '?' + params, options).then(function(res) {
-        console.log(res);
+        return res;
       });
 }
