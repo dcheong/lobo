@@ -13,28 +13,30 @@
                 Contact a Representative
             </div>
             <div class="panel-body">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Address Line 1">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Address Line 2">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="City (e.g. 'Atlanta')">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="State (e.g. 'GA')">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Zip Code">
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" rows="5" placeholder="Message goes here"></textarea>
-                </div>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <form method="post" role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Address Line 2" name="address2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="City (e.g. 'Atlanta')" name="city">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="State (e.g. 'GA')" name="state">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Zip Code" name="zip">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Message goes here" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Generate!</button>
+                </form>
             </div>
         </div>
     </body>
