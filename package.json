@@ -1,0 +1,23 @@
+{
+  "name": "lobo",
+  "version": "1.0.0",
+  "description": "Lob coding challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dcheong/lobo.git"
+  },
+  "author": "Douglas Cheong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcheong/lobo/issues"
+  },
+  "homepage": "https://github.com/dcheong/lobo#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lob": "^3.9.0"
+  }
+}
