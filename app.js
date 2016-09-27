@@ -24,15 +24,16 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     console.log('post received');
-    var aString = req.body.address1 + ' ' + req.body.address2 + ' ' + req.body.city + ' ' + req.body.state;
-    getReps(aString, res);
+    
+    getReps(req.body, res);
 });
 
 app.listen(3000, function() {
     console.log('Listening on port 3000');
 });
 
-function getReps(aString, res) {
+function getReps(body, res) {
+    var aString = body.address1 + ' ' + body.address2 + ' ' + body.city + ' ' + body.state;
     console.log(aString);
     var options = {
         method: 'GET'
@@ -51,7 +52,34 @@ function getReps(aString, res) {
     fetch(repURL + '?' + params, options).then(function(res) {
        return res.json();
       }).then(function(json) {
-          console.log(json);
+          var official = json.officials[0];
+          Lob.letters.create({
+              description: 'Letter To My Representative',
+              to: {
+                  name: official.name,
+                  address_line1: official.address[0].line1,
+                  address_city: official.address[0].city,
+                  address_state: official.address[0].state,
+                  address_zip: official.address[0].zip,
+              },
+              from: {
+                  name: body.name,
+                  address_line1: body.address1,
+                  address_line2: body.address2,
+                  address_city: body.city,
+                  address_state: body.state,
+                  address_zip: body.zip,
+              },
+              file: '<html style="padding-top: 3in; margin: .5in;">Letter for {{name}}</html>',
+              data: {
+                  name: official.name
+              },
+              color: true
+          }, function(err, response) {
+              console.log(err, res);
+          }
+          })
           res.send(json.officials[0]);
+
       });
 }
