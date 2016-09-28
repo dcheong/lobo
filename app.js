@@ -24,7 +24,17 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     console.log('post received');
-    
+    if (req.body.state.length != 2) {
+        res.status(500).send({error: 'The length of STATE must be 2 (e.g. TX, CA)'});
+    }
+    if (req.body.address1.length == 0
+        || req.body.name.length == 0
+        || req.body.city.length == 0
+        || req.body.state.length == 0
+        || req.body.zip == 0
+        || req.body.message == 0) {
+            res.status(500).send({error: 'One of the required fields was empty.'});
+        }
     getReps(req.body, res);
 });
 
@@ -70,16 +80,16 @@ function getReps(body, res) {
                   address_state: body.state,
                   address_zip: body.zip,
               },
-              file: '<html style="padding-top: 3in; margin: .5in;">Letter for {{name}}</html>',
+              file: '<html style="padding-top: 3in; margin: .5in;"><h1>Letter for {{name}}</h1><p>{{message}}</p></html>',
               data: {
-                  name: official.name
+                  name: official.name,
+                  message: body.message
               },
               color: true
-          }, function(err, response) {
-              console.log(err, res);
-          }
-          })
-          res.send(json.officials[0]);
+          }, function(error, response) {
+              res.statusCode = 302;
+              res.redirect(response.url);
+          });
 
       });
 }
