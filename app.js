@@ -87,7 +87,6 @@ function getReps(body, res) {
               },
               color: true
           }, function(error, response) {
-              res.statusCode = 302;
               res.redirect(response.url);
           });
 
